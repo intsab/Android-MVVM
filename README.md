@@ -8,3 +8,8 @@ The application has 1 screen that shows a list of comments on a post. (Dummy Jso
 > Coroutines, </br>
 > Constraint Layouts, </br>
 > MVVM Architecture , </br>
+> 
+
+![Screenshot](https://github.com/intsab/Daggar2Demo/blob/main/screenshots/screenshot.png?raw=true)
+
+

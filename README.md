@@ -3,7 +3,7 @@
 # Features
 The application has 1 screen that shows a list of comments on a post. (Dummy Json from https://jsonplaceholder.typicode.com/) 
 ## Implementation
-> The application code will have demo implementation of Daggar (Dependency Injection), </br>
+> The application code will have demo implementation of </br> Daggar (Dependency Injection), </br>
 > Retrofit, </br>
 > Coroutines, </br>
 > Constraint Layouts, </br>

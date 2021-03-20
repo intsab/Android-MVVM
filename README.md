@@ -1,5 +1,5 @@
-# Daggar2 Demo
- Dagger-2 basic Implementation
+# Daggar 2 Demo
+ Dagger-2 Implementation Sample / Retrfit Sample / Coroutines Sample / MVVM Sample
 # Features
 The application has 1 screen that shows a list of comments on a post. (Dummy Json from https://jsonplaceholder.typicode.com/) 
 ## Implementation

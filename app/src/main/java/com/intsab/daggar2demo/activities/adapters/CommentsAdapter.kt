@@ -1,10 +1,11 @@
-package com.intsab.daggar2demo
+package com.intsab.daggar2demo.activities.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.intsab.daggar2demo.R
 import com.intsab.daggar2demo.data.models.CommentsModel
 
 class CommentsAdapter(val list: ArrayList<CommentsModel>) :

@@ -1,4 +1,4 @@
-package com.intsab.daggar2demo
+package com.intsab.daggar2demo.activities
 
 import androidx.lifecycle.ViewModel
 import com.intsab.daggar2demo.data.models.CommentsModel

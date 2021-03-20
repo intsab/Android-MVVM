@@ -1,8 +1,11 @@
-package com.intsab.daggar2demo
+package com.intsab.daggar2demo.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.intsab.daggar2demo.MyApplication
+import com.intsab.daggar2demo.R
+import com.intsab.daggar2demo.activities.adapters.CommentsAdapter
 import com.intsab.daggar2demo.data.models.CommentsModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +17,8 @@ class MainActivity : AppCompatActivity() {
     private val commentsList: ArrayList<CommentsModel> = arrayListOf()
 
     //    private val viewModel: MainActivityViewModel by viewModels()
-    private val adapter: CommentsAdapter = CommentsAdapter(commentsList)
+    private val adapter: CommentsAdapter =
+        CommentsAdapter(commentsList)
 
     @Inject
     lateinit var viewModel: MainActivityViewModel

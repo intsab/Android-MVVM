@@ -1,6 +1,6 @@
 package com.intsab.daggar2demo.dagger
 
-import com.intsab.daggar2demo.MainActivity
+import com.intsab.daggar2demo.activities.MainActivity
 import com.intsab.daggar2demo.data.network.CommentsModule
 import dagger.Component
 

@@ -9,7 +9,8 @@ The application has 1 screen that shows a list of comments on a post. (Dummy Jso
 > Constraint Layouts, </br>
 > MVVM Architecture , </br>
 > 
-
+</br>
+## Screenshot
 <img src="https://github.com/intsab/Daggar2Demo/blob/main/screenshots/screenshot.png" width="200" />
 
 

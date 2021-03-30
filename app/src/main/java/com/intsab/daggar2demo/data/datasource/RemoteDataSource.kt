@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val retrofitServiceProvider: NetworkServiceProvider) :
     CommentsService {
-    override fun getComments(): Call<List<CommentsModel>> {
-        return retrofitServiceProvider.provideCommentsRetrofitService().getComments()
+    override fun getComments(url:String): Call<List<CommentsModel>> {
+        return retrofitServiceProvider.provideCommentsRetrofitService().getComments(url)
     }
 }

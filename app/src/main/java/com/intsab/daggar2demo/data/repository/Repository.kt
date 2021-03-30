@@ -6,8 +6,9 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(private val remoteDataSource: RemoteDataSource) {
 
-    fun getComments(): List<CommentsModel> {
-        val call = remoteDataSource.getComments()
+    fun getComments(pageNumber: Int): List<CommentsModel> {
+        val url = "posts/$pageNumber/comments"
+        val call = remoteDataSource.getComments(url)
         val result = call.execute().body()
         return if (result.isNullOrEmpty()) {
             arrayListOf()

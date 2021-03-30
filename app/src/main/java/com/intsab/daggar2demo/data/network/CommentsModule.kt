@@ -8,13 +8,14 @@ import okio.Timeout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Url
 
 @Module
 class CommentsModule {
     @Provides
     fun provideServices():CommentsService{
         return object :CommentsService{
-            override fun getComments(): Call<List<CommentsModel>> {
+            override fun getComments(@Url url: String): Call<List<CommentsModel>> {
                return object :Call<List<CommentsModel>>{
                    override fun enqueue(callback: Callback<List<CommentsModel>>) {
                        TODO("Not yet implemented")

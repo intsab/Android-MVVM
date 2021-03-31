@@ -3,7 +3,6 @@ package com.intsab.daggar2demo.activities.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.intsab.daggar2demo.data.models.CommentsModel
 import com.intsab.daggar2demo.databinding.CommentItemLayoutBinding
@@ -27,28 +26,14 @@ class CommentsAdapter(private val context: Context, private var list: ArrayList<
         holder.bind(list[position])
     }
 
-    fun addItems(listItems: ArrayList<CommentsModel>) {
-        list = listItems
-        notifyDataSetChanged()
-    }
-    class CommentsViewHolder(private val binding: CommentItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-
-
+    class CommentsViewHolder(private val binding: CommentItemLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(obj: CommentsModel) {
             binding.apply {
                 comment = obj
                 executePendingBindings()
             }
         }
-        }
-
     }
-//    inner class CommentsViewHolder(val binding: CommentItemLayoutBinding) :
-//        RecyclerView.ViewHolder(binding.root) {
-//        fun bind(item: CommentsModel) {
-//            binding.tvName.text = item.name
-//            binding.tvEmail.text = item.email
-//            binding.tvComment.text = item.body
-//            binding.executePendingBindings()
-//        }
-//    }
+
+}

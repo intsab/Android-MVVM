@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:indeterminate="true"
+        android:visibility="gone"
         app:indeterminateAnimationType="contiguous"
         app:indicatorColor="@color/black"
         app:trackColor="@color/cardview_shadow_start_color" />

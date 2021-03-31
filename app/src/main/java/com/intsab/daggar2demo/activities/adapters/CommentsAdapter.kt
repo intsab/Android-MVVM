@@ -1,21 +1,22 @@
 package com.intsab.daggar2demo.activities.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.intsab.daggar2demo.R
 import com.intsab.daggar2demo.data.models.CommentsModel
+import com.intsab.daggar2demo.databinding.CommentItemLayoutBinding
 
-class CommentsAdapter(val list: ArrayList<CommentsModel>) :
+
+class CommentsAdapter(private val context: Context, private var list: ArrayList<CommentsModel>) :
     RecyclerView.Adapter<CommentsAdapter.CommentsViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentsViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.comment_item_layout, parent, false)
-        return CommentsViewHolder(itemView)
+        val layoutInflater = LayoutInflater.from(context)
+        val itemBinding: CommentItemLayoutBinding =
+            CommentItemLayoutBinding.inflate(layoutInflater, parent, false)
+        return CommentsViewHolder(itemBinding)
     }
 
     override fun getItemCount(): Int {
@@ -23,15 +24,31 @@ class CommentsAdapter(val list: ArrayList<CommentsModel>) :
     }
 
     override fun onBindViewHolder(holder: CommentsViewHolder, position: Int) {
-        val commentItem = list[position]
-        holder.tvName.text = commentItem.name
-        holder.tvEmail.text = commentItem.email
-        holder.tvComment.text = commentItem.body
+        holder.bind(list[position])
     }
 
-    inner class CommentsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var tvName: TextView = view.findViewById(R.id.name)
-        var tvEmail: TextView = view.findViewById(R.id.email)
-        var tvComment: TextView = view.findViewById(R.id.comment)
+    fun addItems(listItems: ArrayList<CommentsModel>) {
+        list = listItems
+        notifyDataSetChanged()
     }
-}
+    class CommentsViewHolder(private val binding: CommentItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+
+
+        fun bind(obj: CommentsModel) {
+            binding.apply {
+                comment = obj
+                executePendingBindings()
+            }
+        }
+        }
+
+    }
+//    inner class CommentsViewHolder(val binding: CommentItemLayoutBinding) :
+//        RecyclerView.ViewHolder(binding.root) {
+//        fun bind(item: CommentsModel) {
+//            binding.tvName.text = item.name
+//            binding.tvEmail.text = item.email
+//            binding.tvComment.text = item.body
+//            binding.executePendingBindings()
+//        }
+//    }

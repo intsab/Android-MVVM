@@ -18,9 +18,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     private val commentsList: ArrayList<CommentsModel> = arrayListOf()
 
-    //    private val viewModel: MainActivityViewModel by viewModels()
-    private val adapter: CommentsAdapter =
-        CommentsAdapter(commentsList)
+    private val adapter: CommentsAdapter = CommentsAdapter(this, commentsList)
 
     @Inject
     lateinit var viewModel: MainActivityViewModel
@@ -29,28 +27,32 @@ class MainActivity : AppCompatActivity() {
         (applicationContext as MyApplication).appComponent.inject(this)
         setContentView(R.layout.activity_main)
         loader.animate()
-
         add_more.setOnClickListener {
             GlobalScope.launch(Dispatchers.Main) {
                 viewModel.pageNumber = viewModel.pageNumber + 1
                 loader.visibility = View.VISIBLE
-                viewModel.getComments()
+                GlobalScope.launch(Dispatchers.Main) {
+                    viewModel.getComments()
+                }
             }
         }
-
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = this@MainActivity.adapter
         }
+
         loadData()
     }
 
     private fun loadData() {
+        loader.visibility = View.VISIBLE
         GlobalScope.launch(Dispatchers.Main) {
             viewModel.getComments().dataList.observe(this@MainActivity, Observer {
-                commentsList.addAll(it)
-                adapter.notifyDataSetChanged()
-                loader.visibility = View.GONE
+                runOnUiThread {
+                    commentsList.addAll(it)
+                    adapter.notifyDataSetChanged()
+                    loader.visibility = View.GONE
+                }
             })
         }
     }

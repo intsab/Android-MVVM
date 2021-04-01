@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.intsab.daggar2demo.MyApplication
 import com.intsab.daggar2demo.R
 import com.intsab.daggar2demo.activities.adapters.CommentsAdapter
-import com.intsab.daggar2demo.data.models.CommentsModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -16,9 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    private val commentsList: ArrayList<CommentsModel> = arrayListOf()
-
-    private val adapter: CommentsAdapter = CommentsAdapter(this, commentsList)
+    private val adapter: CommentsAdapter = CommentsAdapter()
 
     @Inject
     lateinit var viewModel: MainActivityViewModel
@@ -27,15 +24,7 @@ class MainActivity : AppCompatActivity() {
         (applicationContext as MyApplication).appComponent.inject(this)
         setContentView(R.layout.activity_main)
         loader.animate()
-        add_more.setOnClickListener {
-            GlobalScope.launch(Dispatchers.Main) {
-                viewModel.pageNumber = viewModel.pageNumber + 1
-                loader.visibility = View.VISIBLE
-                GlobalScope.launch(Dispatchers.Main) {
-                    viewModel.getComments()
-                }
-            }
-        }
+
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = this@MainActivity.adapter
@@ -46,11 +35,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadData() {
         loader.visibility = View.VISIBLE
+
         GlobalScope.launch(Dispatchers.Main) {
-            viewModel.getComments().dataList.observe(this@MainActivity, Observer {
+            viewModel.getPagedCommentsList()?.observe(this@MainActivity, Observer {
                 runOnUiThread {
-                    commentsList.addAll(it)
-                    adapter.notifyDataSetChanged()
+                    adapter.submitList(it)
                     loader.visibility = View.GONE
                 }
             })

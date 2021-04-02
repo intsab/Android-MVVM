@@ -59,7 +59,3 @@ I am providing some coding samples as well for  `batter understandings`
        
 
 
-## Screenshot
-<img src="https://github.com/intsab/Daggar2Demo/blob/main/screenshots/screenshot.png" width="200" />
-
-

@@ -1,9 +1,8 @@
-package com.intsab.daggar2demo.activities.pagingUtils
+package com.intsab.mvvm.activities.pagingUtils
 
 import androidx.paging.PageKeyedDataSource
-import com.intsab.daggar2demo.activities.MainActivityViewModel
-import com.intsab.daggar2demo.data.models.CommentsModel
-import com.intsab.daggar2demo.data.repository.Repository
+import com.intsab.mvvm.activities.MainActivityViewModel
+import com.intsab.mvvm.data.models.CommentsModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async

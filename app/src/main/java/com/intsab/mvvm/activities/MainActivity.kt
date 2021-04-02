@@ -1,13 +1,13 @@
-package com.intsab.daggar2demo.activities
+package com.intsab.mvvm.activities
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.intsab.daggar2demo.MyApplication
-import com.intsab.daggar2demo.R
-import com.intsab.daggar2demo.activities.adapters.CommentsAdapter
+import com.intsab.mvvm.MyApplication
+import com.intsab.mvvm.R
+import com.intsab.mvvm.activities.adapters.CommentsAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

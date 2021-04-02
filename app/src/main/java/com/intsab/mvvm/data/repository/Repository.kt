@@ -1,7 +1,7 @@
-package com.intsab.daggar2demo.data.repository
+package com.intsab.mvvm.data.repository
 
-import com.intsab.daggar2demo.data.datasource.RemoteDataSource
-import com.intsab.daggar2demo.data.models.CommentsModel
+import com.intsab.mvvm.data.datasource.RemoteDataSource
+import com.intsab.mvvm.data.models.CommentsModel
 import javax.inject.Inject
 
 class Repository @Inject constructor(private val remoteDataSource: RemoteDataSource) {

@@ -1,14 +1,14 @@
-package com.intsab.daggar2demo.activities
+package com.intsab.mvvm.activities
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.intsab.daggar2demo.activities.pagingUtils.CommentsDataSourceFactory
-import com.intsab.daggar2demo.activities.pagingUtils.CommentsPagingHelper
-import com.intsab.daggar2demo.data.models.CommentsModel
-import com.intsab.daggar2demo.data.repository.Repository
+import com.intsab.mvvm.activities.pagingUtils.CommentsDataSourceFactory
+import com.intsab.mvvm.activities.pagingUtils.CommentsPagingHelper
+import com.intsab.mvvm.data.models.CommentsModel
+import com.intsab.mvvm.data.repository.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async

@@ -1,4 +1,4 @@
-package com.intsab.daggar2demo
+package com.intsab.mvvm
 
 import org.junit.Test
 

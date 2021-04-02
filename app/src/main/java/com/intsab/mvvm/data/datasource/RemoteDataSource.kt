@@ -1,8 +1,8 @@
-package com.intsab.daggar2demo.data.datasource
+package com.intsab.mvvm.data.datasource
 
-import com.intsab.daggar2demo.data.models.CommentsModel
-import com.intsab.daggar2demo.data.network.CommentsService
-import com.intsab.daggar2demo.data.network.NetworkServiceProvider
+import com.intsab.mvvm.data.models.CommentsModel
+import com.intsab.mvvm.data.network.CommentsService
+import com.intsab.mvvm.data.network.NetworkServiceProvider
 import retrofit2.Call
 import javax.inject.Inject
 

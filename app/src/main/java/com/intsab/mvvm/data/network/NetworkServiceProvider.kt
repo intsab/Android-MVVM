@@ -1,4 +1,4 @@
-package com.intsab.daggar2demo.data.network
+package com.intsab.mvvm.data.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -1,4 +1,4 @@
-package com.intsab.daggar2demo
+package com.intsab.mvvm
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

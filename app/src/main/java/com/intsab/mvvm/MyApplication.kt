@@ -1,7 +1,7 @@
-package com.intsab.daggar2demo
+package com.intsab.mvvm
 
 import android.app.Application
-import com.intsab.daggar2demo.dagger.DaggerApplicationComponent
+import com.intsab.mvvm.dagger.DaggerApplicationComponent
 
 class MyApplication: Application() {
     val appComponent = DaggerApplicationComponent.create()

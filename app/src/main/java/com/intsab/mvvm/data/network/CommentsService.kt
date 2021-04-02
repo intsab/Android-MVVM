@@ -1,6 +1,6 @@
-package com.intsab.daggar2demo.data.network
+package com.intsab.mvvm.data.network
 
-import com.intsab.daggar2demo.data.models.CommentsModel
+import com.intsab.mvvm.data.models.CommentsModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Url

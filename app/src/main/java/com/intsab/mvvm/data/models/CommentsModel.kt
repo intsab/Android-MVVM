@@ -1,4 +1,4 @@
-package com.intsab.daggar2demo.data.models
+package com.intsab.mvvm.data.models
 
 import androidx.recyclerview.widget.DiffUtil
 import com.google.gson.annotations.SerializedName

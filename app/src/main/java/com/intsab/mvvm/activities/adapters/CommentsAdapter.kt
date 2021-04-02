@@ -1,14 +1,11 @@
-package com.intsab.daggar2demo.activities.adapters
+package com.intsab.mvvm.activities.adapters
 
-import android.content.Context
-import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.intsab.daggar2demo.data.models.CommentsModel
-import com.intsab.daggar2demo.databinding.CommentItemLayoutBinding
+import com.intsab.mvvm.data.models.CommentsModel
+import com.intsab.mvvm.databinding.CommentItemLayoutBinding
 
 
 class CommentsAdapter :

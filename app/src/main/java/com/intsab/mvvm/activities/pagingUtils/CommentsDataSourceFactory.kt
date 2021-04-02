@@ -1,9 +1,9 @@
-package com.intsab.daggar2demo.activities.pagingUtils
+package com.intsab.mvvm.activities.pagingUtils
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import com.intsab.daggar2demo.activities.MainActivityViewModel
-import com.intsab.daggar2demo.data.models.CommentsModel
+import com.intsab.mvvm.activities.MainActivityViewModel
+import com.intsab.mvvm.data.models.CommentsModel
 import javax.inject.Inject
 
 

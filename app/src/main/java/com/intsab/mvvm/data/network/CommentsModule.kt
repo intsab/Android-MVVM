@@ -10,6 +10,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.http.Url
 
+/**
+ *
+ * Was Made for testing purpose to provide dependency of the interface NOT IN USE
+ **/
+
 @Module
 class CommentsModule {
     @Provides

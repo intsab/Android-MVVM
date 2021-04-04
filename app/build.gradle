@@ -75,10 +75,9 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.20'
 
     /* Unit Testing Support  */
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    testImplementation 'org.mockito:mockito-inline:2.13.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 
 
 

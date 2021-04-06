@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainActivityFragment">
 
+    <fragment
+        android:id="@+id/mainActivityFragment"
+        android:name="com.intsab.mvvm.fragments.MainActivityFragment"
+        android:label="MainActivityFragment">
+        <action
+            android:id="@+id/action_mainActivityFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.intsab.mvvm.fragments.DetailsFragment"
+        android:label="DetailsFragment">
+        <argument
+            android:name="name"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="details"
+            android:defaultValue="null"
+            app:argType="string" />
+    </fragment>
 </navigation>

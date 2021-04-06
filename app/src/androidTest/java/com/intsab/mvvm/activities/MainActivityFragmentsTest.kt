@@ -10,29 +10,26 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.runner.AndroidJUnit4
 import com.intsab.mvvm.R
+import kotlinx.coroutines.delay
 import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.concurrent.thread
 
 
 @RunWith(AndroidJUnit4::class)
-class MainActivityTest {
+class MainActivityFragmentsTest {
     val targetContext: Context = ApplicationProvider.getApplicationContext()
     var dataCount: Int = 0
 
-    @get:Rule
-    var activityRule: ActivityScenarioRule<MainActivity> =
-        ActivityScenarioRule(MainActivity::class.java)
-
     @Before
     fun before() {
-        activityRule.scenario.onActivity { activity ->
-            Thread.sleep(7_000)  // wait to get Data
-            dataCount = 5
-        }
+
+    }
+
+    suspend fun delaySeconds(seconds: Long) {
+        delay(timeMillis = seconds)
     }
 
     @Test
@@ -66,5 +63,14 @@ class MainActivityTest {
 
     }
 
+//    @Test
+//    fun isDataLoaded(){
+//        var firstItem:CommentsModel?= null
+//        activityRule.scenario.onActivity { activity ->
+//            firstItem = activity.firstItem
+//        }
+//        onData(allOf(`is`(instanceOf(CommentsModel::class.java)),
+//            hasEntry(equalTo(firstItem), `is`(""))))
+//    }
 
 }

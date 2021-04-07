@@ -89,6 +89,12 @@ Here is the method from where I initiated it.
 			})
 		}
 	    }
+Sample with async:
+
+	 suspend fun getComments(): List<CommentsModel> {
+		val comments = GlobalScope.async(Dispatchers.IO) { repo.getComments(pageNumber) }
+		return comments.await()
+	    }
 	    
 ### WorkManager:
 Work Manager is an android API for doing long tasks like download files, or any other tasks that need to be done periodically. I used it just to show Local notifications after some time periodically. Here is the code of that.

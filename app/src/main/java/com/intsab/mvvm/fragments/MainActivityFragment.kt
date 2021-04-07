@@ -11,24 +11,30 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.Data
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.intsab.mvvm.MyApplication
 import com.intsab.mvvm.R
 import com.intsab.mvvm.activities.MainActivityViewModel
 import com.intsab.mvvm.activities.adapters.CommentsAdapter
 import com.intsab.mvvm.data.models.CommentsModel
+import com.intsab.mvvm.workers.ShowPushNotificationTask
 import kotlinx.android.synthetic.main.fragment_main_activity.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-
 class MainActivityFragment : Fragment() {
+
 
     @Inject
     lateinit var viewModel: MainActivityViewModel
     private val adapter: CommentsAdapter = CommentsAdapter() {
         requireActivity().runOnUiThread {
+            setNotificationAfterEvery3Seconds(it.name, it.body)
             Toast.makeText(requireActivity().applicationContext, "Clicked", Toast.LENGTH_SHORT)
                 .show()
             val bundle = bundleOf("name" to it.name, "email" to it.email, "details" to it.body)
@@ -97,7 +103,25 @@ class MainActivityFragment : Fragment() {
             firstItem = adapter?.currentList?.get(0)
             tvNoData.visibility = View.GONE
         }
-
-
     }
+
+    private fun setNotificationAfterEvery3Seconds(title: String, desc: String) {
+        val data = Data.Builder()
+        data.putString("title", title)
+        data.putString("desc", desc)
+
+        val periodicWorkRequest = PeriodicWorkRequest.Builder(
+            ShowPushNotificationTask::class.java,
+            10,
+            TimeUnit.MILLISECONDS,
+            2,
+            TimeUnit.MILLISECONDS
+        )
+            .setInitialDelay(2, TimeUnit.MILLISECONDS)
+            .setInputData(data.build())
+            .build()
+        WorkManager.getInstance().enqueue(periodicWorkRequest);
+    }
+
+
 }

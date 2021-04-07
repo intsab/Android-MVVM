@@ -50,6 +50,8 @@ android {
 
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation "androidx.work:work-runtime-ktx:2.5.0"
+
 
     /* Kotlin Support  */
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

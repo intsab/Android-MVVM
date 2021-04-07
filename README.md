@@ -107,6 +107,7 @@ Created worker class as follow:
 	    }
 	}
 and to initiate worker thread used this code:
+	
 	private fun setNotificationAfterEvery3Seconds(title: String, desc: String) {
 		val data = Data.Builder()
 		data.putString("title", title)
@@ -128,6 +129,7 @@ and to initiate worker thread used this code:
 
 ### Local Notifications:
 I also used local notification in the app for demo purposes. Have a look at its code that i added in UtilsClass
+	
 	object AppUtils {
 	    private val CHANNEL_ID: String = "com.intsab.com"
 	     fun showNotification(context: Context, title: String?, desc: String?) {
@@ -172,6 +174,7 @@ Use following dependancies in gradle
 	implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 	implementation 'com.squareup.okhttp3:logging-interceptor:3.14.9'
 Created Data Source as following:
+	
 	class RemoteDataSource  @Inject constructor(){
 	    fun getComments(url: String): Call<List<CommentsModel>> {
 		return provideCommentsRetrofitService().getComments(url)
@@ -188,6 +191,7 @@ Created Data Source as following:
 	    }
 	}
 Here is the service Interface
+	
 	interface CommentsService {
 	    @GET
 	    fun getComments(@Url url:String): Call<List<CommentsModel>>
@@ -303,7 +307,8 @@ Using DataBinding to set Data within the views here is a sample for that.
 ### Dagger 2
 Used Dagger 2 for dependency Injection here is the code example for that
 Dependancies:
-	 /* dagger dependency  */
+	
+	/* dagger dependency  */
 	 implementation 'com.google.dagger:dagger-android:2.20'
 	 implementation 'com.google.dagger:dagger-android-support:2.20'
 	 implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -313,18 +318,22 @@ Dependancies:
 	kapt 'com.google.dagger:dagger-compiler:2.20'
 	
 My APplication Class:
+	
 	class MyApplication: Application() {
 	    val appComponent = DaggerApplicationComponent.create()
 	}
 Inject constructors like this
+	
 	class Repository @Inject constructor(private val remoteDataSource: RemoteDataSource) {}
 
 ### Paging Library
 Used android Paging Library for lazy loading of list data here is the example for that.
 added Dependancy 
+	 
 	 /* Paging Library dependency  */
 	 implementation "androidx.paging:paging-runtime-ktx:2.1.2"
 Here is the code for adapter:
+	
 	class CommentsAdapter(val listener: (item: CommentsModel) -> Unit) : PagedListAdapter<CommentsModel, CommentsAdapter.CommentsViewHolder>(CommentsModel.CALLBACK) {
 
 	    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentsViewHolder {

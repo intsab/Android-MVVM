@@ -91,12 +91,13 @@ Here is the method from where I initiated it.
 	    }
 ```
 Sample with async:
+```kotlin
+suspend fun getComments(): List<CommentsModel> {
+	val comments = GlobalScope.async(Dispatchers.IO) { repo.getComments(pageNumber) }
+	return comments.await()
+}
+```
 
-	 suspend fun getComments(): List<CommentsModel> {
-		val comments = GlobalScope.async(Dispatchers.IO) { repo.getComments(pageNumber) }
-		return comments.await()
-	    }
-	    
 ### WorkManager:
 Work Manager is an android API for doing long tasks like download files, or any other tasks that need to be done periodically. I used it just to show Local notifications after some time periodically. Here is the code of that.
 Add this dependancy: 
@@ -104,7 +105,7 @@ Add this dependancy:
 	//To Use WorkManager Android "JetPack"
 	implementation "androidx.work:work-runtime-ktx:2.5.0"
 Created worker class as follow:
-	
+```kotlin
 	class ShowPushNotificationTask(val context: Context, workerParams: WorkerParameters) :
 	    Worker(context, workerParams) {
 
@@ -117,8 +118,9 @@ Created worker class as follow:
 		return Result.success()
 	    }
 	}
+```
 and to initiate worker thread used this code:
-	
+```kotlin	
 	private fun setNotificationAfterEvery3Seconds(title: String, desc: String) {
 		val data = Data.Builder()
 		data.putString("title", title)
@@ -137,10 +139,11 @@ and to initiate worker thread used this code:
 		WorkManager.getInstance().enqueue(periodicWorkRequest);
 	    }
 	  
+```
 
 ### Local Notifications:
 I also used local notification in the app for demo purposes. Have a look at its code that I added in UtilsClass
-	
+```kotlin
 	object AppUtils {
 	    private val CHANNEL_ID: String = "com.intsab.com"
 	     fun showNotification(context: Context, title: String?, desc: String?) {
@@ -174,6 +177,7 @@ I also used local notification in the app for demo purposes. Have a look at its 
 		}
 	    }
 	}
+```
 
 ### Retrofit
 Used Retrofit for API's call here is the sample code for that
@@ -186,7 +190,8 @@ Use following dependencies in Gradle
 	implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 	implementation 'com.squareup.okhttp3:logging-interceptor:3.14.9'
 Created Data Source as following:
-	
+
+```kotlin
 	class RemoteDataSource  @Inject constructor(){
 	    fun getComments(url: String): Call<List<CommentsModel>> {
 		return provideCommentsRetrofitService().getComments(url)
@@ -202,12 +207,14 @@ Created Data Source as following:
 		return retro.create(CommentsService::class.java)
 	    }
 	}
+```
 Here is the Service Interface
-	
+```kotlin
 	interface CommentsService {
 	    @GET
 	    fun getComments(@Url url:String): Call<List<CommentsModel>>
 	}
+```
 	
 ### Android Navigation Library
 Used Latest Android Navigation graph library for navigation between fragments and activities. Here is the sample for that.
@@ -217,7 +224,7 @@ Dependancy for this lib is:
 	implementation 'androidx.navigation:navigation-fragment-ktx:2.3.4'
 	implementation 'androidx.navigation:navigation-ui-ktx:2.3.4'
 Here is the navigation hrarchiy
-
+```xml
 	<?xml version="1.0" encoding="utf-8"?>
 	<navigation xmlns:android="http://schemas.android.com/apk/res/android"
 	    xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -250,10 +257,11 @@ Here is the navigation hrarchiy
 		    app:argType="string" />
 	    </fragment>
 	</navigation>
-	
+```
+
 ### Data Binding Library
 Using DataBinding to set Data within the views here is a sample for that.
-
+```xml
 	<?xml version="1.0" encoding="utf-8"?>
 	<layout xmlns:android="http://schemas.android.com/apk/res/android"
 	    xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -315,7 +323,7 @@ Using DataBinding to set Data within the views here is a sample for that.
 
 	    </androidx.constraintlayout.widget.ConstraintLayout>
 	</layout>
-
+```
 
 ### Dagger 2
 Used Dagger 2 for dependency Injection here is the code example for that
@@ -331,13 +339,15 @@ Dependancies:
 	kapt 'com.google.dagger:dagger-compiler:2.20'
 	
 My APplication Class:
-	
+```kotlin	
 	class MyApplication: Application() {
 	    val appComponent = DaggerApplicationComponent.create()
 	}
+```
 Inject constructors like this
-	
+```kotlin
 	class Repository @Inject constructor(private val remoteDataSource: RemoteDataSource) {}
+```
 
 ### Paging Library
 Used android Paging Library for lazy loading of list data here is the example for that.
@@ -346,7 +356,7 @@ added Dependency
 	 /* Paging Library dependency  */
 	 implementation "androidx.paging:paging-runtime-ktx:2.1.2"
 Here is the code for adapter:
-	
+```kotlin	
 	class CommentsAdapter(val listener: (item: CommentsModel) -> Unit) : PagedListAdapter<CommentsModel, CommentsAdapter.CommentsViewHolder>(CommentsModel.CALLBACK) {
 
 	    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentsViewHolder {
@@ -373,10 +383,11 @@ Here is the code for adapter:
 		}
 	    }
 	}
+```
 
 ### Expresso UI Testing
 Tested full UI using Expresso Testing here is the test cases for that.
-
+```kotlin
 	@LargeTest
 	@RunWith(AndroidJUnit4::class)
 	class MainActivityTest {
@@ -454,4 +465,5 @@ Tested full UI using Expresso Testing here is the test cases for that.
 		}
 	    }
 	}
+```
 

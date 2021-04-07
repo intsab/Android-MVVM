@@ -77,7 +77,7 @@ Add dependancy:
 	/* Coroutines dependency  */
 	implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
 Here is the method from where I initiated it.
-	```kotlin
+```kotlin
 	private fun loadData() {
 		loader.visibility = View.VISIBLE
 		GlobalScope.launch(Dispatchers.Main) {
@@ -89,7 +89,7 @@ Here is the method from where I initiated it.
 			})
 		}
 	    }
-	 ```
+```
 Sample with async:
 
 	 suspend fun getComments(): List<CommentsModel> {

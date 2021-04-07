@@ -73,10 +73,12 @@ I am providing some coding samples as well for  `batter understandings`
 ### Using Coroutines Sample:
 Android coroutines are used to executes code asynchronously. I used it for calling Apis. Here is the code for that.
 Add dependancy:
+	
 	/* Coroutines dependency  */
 	implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
 Here is the method from where I initiated it.
-	 private fun loadData() {
+	
+	private fun loadData() {
 		loader.visibility = View.VISIBLE
 		GlobalScope.launch(Dispatchers.Main) {
 		    viewModel.getPagedCommentsList()
@@ -91,9 +93,11 @@ Here is the method from where I initiated it.
 ### WorkManager:
 Work Manager is an android API for doing long tasks like download files, or any other tasks that need to be done periodically. I used it just to show Local notifications after some time periodically. Here is the code of that.
 Add this dependancy: 
+	
 	//To Use WorkManager Android "JetPack"
 	implementation "androidx.work:work-runtime-ktx:2.5.0"
 Created worker class as follow:
+	
 	class ShowPushNotificationTask(val context: Context, workerParams: WorkerParameters) :
 	    Worker(context, workerParams) {
 
@@ -128,7 +132,7 @@ and to initiate worker thread used this code:
 	  
 
 ### Local Notifications:
-I also used local notification in the app for demo purposes. Have a look at its code that i added in UtilsClass
+I also used local notification in the app for demo purposes. Have a look at its code that I added in UtilsClass
 	
 	object AppUtils {
 	    private val CHANNEL_ID: String = "com.intsab.com"
@@ -166,7 +170,8 @@ I also used local notification in the app for demo purposes. Have a look at its 
 
 ### Retrofit
 Used Retrofit for API's call here is the sample code for that
-Use following dependancies in gradle
+Use following dependencies in Gradle
+	
 	/* Retrofit using , Okhttp, Okhttp logging interceptor, Gson  */
 	//Retrofit
 	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -190,7 +195,7 @@ Created Data Source as following:
 		return retro.create(CommentsService::class.java)
 	    }
 	}
-Here is the service Interface
+Here is the Service Interface
 	
 	interface CommentsService {
 	    @GET
@@ -200,6 +205,7 @@ Here is the service Interface
 ### Android Navigation Library
 Used Latest Android Navigation graph library for navigation between fragments and activities. Here is the sample for that.
 Dependancy for this lib is:
+	
 	//Navigation Library
 	implementation 'androidx.navigation:navigation-fragment-ktx:2.3.4'
 	implementation 'androidx.navigation:navigation-ui-ktx:2.3.4'
@@ -328,7 +334,7 @@ Inject constructors like this
 
 ### Paging Library
 Used android Paging Library for lazy loading of list data here is the example for that.
-added Dependancy 
+added Dependency 
 	 
 	 /* Paging Library dependency  */
 	 implementation "androidx.paging:paging-runtime-ktx:2.1.2"

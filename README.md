@@ -22,6 +22,7 @@ The Application will be covering the following components and libraries.
 I am providing some coding samples as well for  `batter understandings`
 
 #### Gradle dependencies
+```grovy
 	  dependencies {
 	    //For MultiDex Enable True as app is using lot of libs and size is expanded
 	    implementation 'androidx.multidex:multidex:2.0.1'
@@ -69,7 +70,7 @@ I am providing some coding samples as well for  `batter understandings`
 	    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 	    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 	}
-
+```
 ### Using Coroutines Sample:
 Android coroutines are used to executes code asynchronously. I used it for calling Apis. Here is the code for that.
 Add dependancy:
@@ -78,17 +79,17 @@ Add dependancy:
 	implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
 Here is the method from where I initiated it.
 ```kotlin
-	private fun loadData() {
-		loader.visibility = View.VISIBLE
-		GlobalScope.launch(Dispatchers.Main) {
-		    viewModel.getPagedCommentsList()
-			?.observe(viewLifecycleOwner, Observer { pagedList ->
-			    requireActivity().runOnUiThread {
-				adapter.submitList(pagedList)
-			    }
-			})
-		}
-	    }
+private fun loadData() {
+        loader.visibility = View.VISIBLE
+        GlobalScope.launch(Dispatchers.Main) {
+            viewModel.getPagedCommentsList()
+                ?.observe(viewLifecycleOwner, Observer { pagedList ->
+                    requireActivity().runOnUiThread {
+                        adapter.submitList(pagedList)
+                    }
+                })
+        }
+    }
 ```
 Sample with async:
 ```kotlin
@@ -106,77 +107,76 @@ Add this dependancy:
 	implementation "androidx.work:work-runtime-ktx:2.5.0"
 Created worker class as follow:
 ```kotlin
-	class ShowPushNotificationTask(val context: Context, workerParams: WorkerParameters) :
-	    Worker(context, workerParams) {
+    class ShowPushNotificationTask(val context: Context, workerParams: WorkerParameters) :
+        Worker(context, workerParams) {
 
-	    override fun doWork(): Result {
-		AppUtils.showNotification(
-		    context,
-		    inputData.getStringArray("title")?.firstOrNull(),
-		    inputData.getStringArray("desc")?.firstOrNull()
-		)
-		return Result.success()
-	    }
-	}
+        override fun doWork(): Result {
+            AppUtils.showNotification(
+                context,
+                inputData.getStringArray("title")?.firstOrNull(),
+                inputData.getStringArray("desc")?.firstOrNull()
+            )
+            return Result.success()
+        }
+    }
 ```
 and to initiate worker thread used this code:
 ```kotlin	
-	private fun setNotificationAfterEvery3Seconds(title: String, desc: String) {
-		val data = Data.Builder()
-		data.putString("title", title)
-		data.putString("desc", desc)
+    private fun setNotificationAfterEvery3Seconds(title: String, desc: String) {
+        val data = Data.Builder()
+        data.putString("title", title)
+        data.putString("desc", desc)
 
-		val periodicWorkRequest = PeriodicWorkRequest.Builder(
-		    ShowPushNotificationTask::class.java,
-		    10,
-		    TimeUnit.MILLISECONDS,
-		    2,
-		    TimeUnit.MILLISECONDS
-		)
-		    .setInitialDelay(2, TimeUnit.MILLISECONDS)
-		    .setInputData(data.build())
-		    .build()
-		WorkManager.getInstance().enqueue(periodicWorkRequest);
-	    }
-	  
+        val periodicWorkRequest = PeriodicWorkRequest.Builder(
+            ShowPushNotificationTask::class.java,
+            10,
+            TimeUnit.MILLISECONDS,
+            2,
+            TimeUnit.MILLISECONDS
+        )
+            .setInitialDelay(2, TimeUnit.MILLISECONDS)
+            .setInputData(data.build())
+            .build()
+        WorkManager.getInstance().enqueue(periodicWorkRequest);
+    }	  
 ```
 
 ### Local Notifications:
 I also used local notification in the app for demo purposes. Have a look at its code that I added in UtilsClass
 ```kotlin
-	object AppUtils {
-	    private val CHANNEL_ID: String = "com.intsab.com"
-	     fun showNotification(context: Context, title: String?, desc: String?) {
-		createNotificationChannel(context)
-		val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-		    .setSmallIcon(R.mipmap.ic_launcher)
-		    .setContentTitle(title)
-		    .setContentText(desc)
-		    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-		    .setSmallIcon(R.drawable.ic_launcher_background)
+object AppUtils {
+        private val CHANNEL_ID: String = "com.intsab.com"
+        fun showNotification(context: Context, title: String?, desc: String?) {
+            createNotificationChannel(context)
+            val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(title)
+                .setContentText(desc)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setSmallIcon(R.drawable.ic_launcher_background)
 
-		with(NotificationManagerCompat.from(context)) {
-		    notify(Random.nextInt(), builder.build())
-		}
-	    }
+            with(NotificationManagerCompat.from(context)) {
+                notify(Random.nextInt(), builder.build())
+            }
+        }
 
-	    private fun createNotificationChannel(context: Context) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-		    val name: CharSequence = "LocalNotification"
-		    val description = "its a dummy description"
-		    val importance = NotificationManager.IMPORTANCE_DEFAULT
-		    val channel = NotificationChannel(
-			CHANNEL_ID, name,
-			importance
-		    )
-		    channel.description = description
-		    val notificationManager: NotificationManager = context.getSystemService(
-			NotificationManager::class.java
-		    )
-		    notificationManager.createNotificationChannel(channel)
-		}
-	    }
-	}
+        private fun createNotificationChannel(context: Context) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val name: CharSequence = "LocalNotification"
+                val description = "its a dummy description"
+                val importance = NotificationManager.IMPORTANCE_DEFAULT
+                val channel = NotificationChannel(
+                    CHANNEL_ID, name,
+                    importance
+                )
+                channel.description = description
+                val notificationManager: NotificationManager = context.getSystemService(
+                    NotificationManager::class.java
+                )
+                notificationManager.createNotificationChannel(channel)
+            }
+        }
+    }
 ```
 
 ### Retrofit

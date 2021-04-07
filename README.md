@@ -22,7 +22,7 @@ The Application will be covering the following components and libraries.
 I am providing some coding samples as well for  `batter understandings`
 
 #### Gradle dependencies
-		dependencies {
+	  dependencies {
 	    //For MultiDex Enable True as app is using lot of libs and size is expanded
 	    implementation 'androidx.multidex:multidex:2.0.1'
 
